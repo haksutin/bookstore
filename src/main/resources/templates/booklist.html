@@ -13,6 +13,7 @@
             <tr>
                 <th>Title</th>
                 <th>Author</th>
+                <th>Publication year</th>
                 <th>ISBN</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <td th:text="${book.isbn}"></td>
                 <td>
                     <a th:href="@{/delete/{id}(id=${book.id})}">Delete</a>
+                    <a th:href="@{/edit/{id}(id=${book.id})}">Edit</a>
                 </td>
             </tr>
         </tbody>
