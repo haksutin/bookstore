@@ -18,8 +18,10 @@ public class Book {
     private String isbn;
     private double price;
     
-    public Book(long id, String title, String author, int publicationYear, String isbn, double price) {
-        this.id = id;
+    public Book() {
+    }
+
+    public Book(String title, String author, int publicationYear, String isbn, double price) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
@@ -41,7 +43,7 @@ public class Book {
     public String getAuthor() {
         return author;
     }
-    public void setAuthog(String author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
     public int getPublicationYear() {

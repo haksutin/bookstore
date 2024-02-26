@@ -17,9 +17,8 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // Corrected Book constructor usage
-        Book book1 = new Book(0, "Title 1", "Author 1", 2000, "ISBN 1", 19.99);
-        Book book2 = new Book(0, "Title 2", "Author 2", 2005, "ISBN 2", 29.99);
+        Book book1 = new Book("Bimbofikaatio", "Taika Mannila", 2023, "9789523931794", 26.95);
+        Book book2 = new Book("Röyhkeästi rohkea", "Sointu Borg", 2023, "9789513248871", 28.95);
 
         bookRepository.save(book1);
         bookRepository.save(book2);
