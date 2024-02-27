@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 <body>
 
     <h1>Edit Book</h1>
-
+    <table class="table table-striped">
     <form action="/updateBook" method="post" th:object="${book}">
         <input type="hidden" th:field="*{id}">
         Title: <input type="text" name="title" th:field="*{title}"><br>
@@ -19,10 +19,10 @@
         ISBN: <input type="text" name="isbn" th:field="*{isbn}"><br>
         Price: <input type="text" name="price" th:field="*{price}"><br>
 
-        <button type="submit">Update Book</button>
+        <br><button type="submit" class="btn btn-success">Update Book</button>
     </form>
-
-    <a href="/booklist">Back to booklist</a>
+</table>
+    <a href="/booklist" class="btn btn-secondary">Back to booklist</a>
 
 </body>
 
