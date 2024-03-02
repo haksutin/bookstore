@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Category list</title>
+</head>
+<body>
+    <h1>Category list</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Category ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="category : ${categories}">
+                <td th:text="${category.categoryId}"></td>
+                <td th:text="${category.name}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/addcategory">Add category</a>
+</body>
+</html>

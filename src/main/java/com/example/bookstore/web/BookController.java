@@ -1,8 +1,12 @@
 package com.example.bookstore.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import com.example.bookstore.domain.Category;
+import com.example.bookstore.domain.CategoryRepository;
 import com.example.bookstore.model.Book;
 import com.example.bookstore.repository.BookRepository;
 import java.util.List;
@@ -12,10 +16,13 @@ import java.util.Optional;
 @Controller
 public class BookController {
 
-    private final BookRepository bookRepository;
+    @Autowired
+    private BookRepository bookRepository;
+    private CategoryRepository categoryRepository;
 
-    public BookController(BookRepository bookRepository) {
+    public BookController(BookRepository bookRepository, CategoryRepository categoryRepository) {
         this.bookRepository = bookRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @GetMapping("/booklist")
@@ -27,6 +34,7 @@ public class BookController {
 
     @GetMapping("/addbook")
     public String showAddBookForm(Model model) {
+        model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("book", new Book());
         return "addbook";
     }
