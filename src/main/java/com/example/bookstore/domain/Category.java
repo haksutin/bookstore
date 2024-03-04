@@ -2,9 +2,8 @@ package com.example.bookstore.domain;
 
 import java.util.List;
 
-import org.hibernate.annotations.ManyToAny;
-
 import com.example.bookstore.model.Book;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -21,6 +20,7 @@ public class Category {
     private Long categoryId;
     private String name;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private List<Book> books;
 

@@ -5,12 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.bookstore.domain.Category;
 import com.example.bookstore.domain.CategoryRepository;
 import com.example.bookstore.model.Book;
 import com.example.bookstore.repository.BookRepository;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
@@ -25,6 +26,16 @@ public class BookController {
         this.categoryRepository = categoryRepository;
     }
 
+    @RequestMapping(value = "/books", method=RequestMethod.GET)
+    public @ResponseBody List<Book> bookListRest() {
+        return (List<Book>) bookRepository.findAll();
+    }
+    
+    @RequestMapping(value = "/books/{id}", method=RequestMethod.GET)
+    public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long bookId) {
+        return bookRepository.findById(bookId);
+    }
+    
     @GetMapping("/booklist")
     public String showBookList(Model model) {
         List<Book> books = bookRepository.findAll();

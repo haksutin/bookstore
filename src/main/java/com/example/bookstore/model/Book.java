@@ -1,6 +1,7 @@
 package com.example.bookstore.model;
 
 import com.example.bookstore.domain.Category;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Book {
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "Category")
     private Category category;
