@@ -5,8 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.example.bookstore.domain.AppUser;
 import com.example.bookstore.domain.Category;
 import com.example.bookstore.domain.CategoryRepository;
+import com.example.bookstore.domain.UserRepository;
 import com.example.bookstore.model.Book;
 import com.example.bookstore.repository.BookRepository;
 
@@ -18,7 +20,7 @@ public class BookstoreApplication {
     }
 
     @Bean
-    public CommandLineRunner dataLoader(BookRepository bookRepository, CategoryRepository categoryRepository) {
+    public CommandLineRunner dataLoader(BookRepository bookRepository, CategoryRepository categoryRepository, UserRepository userRepository) {
         return args -> {
             Category nonfiction = new Category("Non-fiction");
             Category biography = new Category("Biography");
@@ -31,6 +33,12 @@ public class BookstoreApplication {
 
             bookRepository.save(book1);
             bookRepository.save(book2);
+
+            AppUser user1 = new AppUser("user", "$2a$10$ko0aX0ZYYNMEQfcCYjVdQugSGw1MQ9AOmBgKYiV00Crljj/0HDwDC", "user@email.com", "USER");
+            AppUser user2 = new AppUser("admin", "$2a$10$8zC89hO334ZNrWtYiRzIEeCjzIBzXVSz35yVLQS3clyp6F2zFM9Km", "admin@email.com", "ADMIN");
+
+            userRepository.save(user1);
+            userRepository.save(user2);
         };
     }
 }

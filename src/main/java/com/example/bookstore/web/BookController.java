@@ -1,6 +1,7 @@
 package com.example.bookstore.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +11,6 @@ import com.example.bookstore.model.Book;
 import com.example.bookstore.repository.BookRepository;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 
 @Controller
 public class BookController {
@@ -26,16 +24,21 @@ public class BookController {
         this.categoryRepository = categoryRepository;
     }
 
-    @RequestMapping(value = "/books", method=RequestMethod.GET)
+    @RequestMapping(value = "/login")
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/books", method = RequestMethod.GET)
     public @ResponseBody List<Book> bookListRest() {
         return (List<Book>) bookRepository.findAll();
     }
-    
-    @RequestMapping(value = "/books/{id}", method=RequestMethod.GET)
+
+    @RequestMapping(value = "/books/{id}", method = RequestMethod.GET)
     public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long bookId) {
         return bookRepository.findById(bookId);
     }
-    
+
     @GetMapping("/booklist")
     public String showBookList(Model model) {
         List<Book> books = bookRepository.findAll();
@@ -51,11 +54,13 @@ public class BookController {
     }
 
     @PostMapping("/addbook")
-    public String addBook(@ModelAttribute Book book) {
+    public String addBook(@ModelAttribute Book book, Model model) {
+        System.out.println("YRITETAAN LISATA");
         bookRepository.save(book);
         return "redirect:/booklist";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/delete/{id}")
     public String deleteBook(@PathVariable("id") Long id) {
         bookRepository.deleteById(id);
