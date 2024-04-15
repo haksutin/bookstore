@@ -1,7 +1,7 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,21 +10,21 @@
 
 <body>
     <div class="container">
-    <h1>Edit Book</h1>
-    <table class="table table-striped">
-    <form action="/updateBook" method="post" th:object="${book}">
-        <input type="hidden" th:field="*{id}">
-        Title: <input type="text" name="title" th:field="*{title}"><br>
-        Author: <input type="text" name="author" th:field="*{author}"><br>
-        Publication Year: <input type="number" name="publicationYear" th:field="*{publicationYear}"><br>
-        ISBN: <input type="text" name="isbn" th:field="*{isbn}"><br>
-        Price: <input type="text" name="price" th:field="*{price}"><br>
+        <h1>Edit Book</h1>
+        <table class="table table-striped">
+            <form action="/updateBook" method="post" th:object="${book}">
+                <input type="hidden" th:field="*{id}">
+                Title: <input type="text" name="title" th:field="*{title}"><br>
+                Author: <input type="text" name="author" th:field="*{author}"><br>
+                Publication Year: <input type="number" name="publicationYear" th:field="*{publicationYear}"><br>
+                ISBN: <input type="text" name="isbn" th:field="*{isbn}"><br>
+                Price: <input type="text" name="price" th:field="*{price}"><br>
 
-        <br><button type="submit" class="btn btn-success">Update Book</button>
-    </form>
-</table>
-    <a href="/booklist" class="btn btn-secondary">Back to booklist</a>
-
+                <br><button type="submit" class="btn btn-success">Update Book</button>
+            </form>
+        </table>
+        <a href="/booklist" class="btn btn-secondary">Back to booklist</a>
+    </div>
 </body>
 
 </html>
