@@ -44,6 +44,7 @@ public class BookController {
         List<Book> books = bookRepository.findAll();
         model.addAttribute("books", books);
         return "booklist";
+
     }
 
     @GetMapping("/addbook")
@@ -67,6 +68,12 @@ public class BookController {
         return "redirect:/booklist";
     }
 
+    @PostMapping("/save")
+    public String saveBook(@ModelAttribute Book book) {
+        bookRepository.save(book);
+        return "redirect:/booklist";
+    }
+
     @GetMapping("/edit/{id}")
     public String showEditBookForm(@PathVariable("id") long id, Model model) {
         Optional<Book> optionalBook = bookRepository.findById(id);
@@ -78,10 +85,10 @@ public class BookController {
         }
     }
 
-    @PostMapping("/updateBook")
-    public String updateBook(@ModelAttribute Book book) {
-        bookRepository.save(book);
-        return "redirect:/booklist";
-    }
+    // @PostMapping("/updateBook")
+    // public String updateBook(@ModelAttribute Book book) {
+    // bookRepository.save(book);
+    // return "redirect:/booklist";
+    // }
 
 }
